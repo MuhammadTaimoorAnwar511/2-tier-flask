@@ -25,8 +25,7 @@ jobs:
 
       - name: Pull image from docker hub
         run: docker pull taimooranwar/flaskapp:latest
-      - name: stop Old Container
-        run: docker stop flaskapp
+
       - name: Delete Old Container
         run: docker rm -f flaskapp
       - name: Run docker container
