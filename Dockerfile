@@ -3,7 +3,8 @@ FROM python:3.9-slim
 
 # Set the working directory in the container
 WORKDIR /app
-
+# Copy .env file to container
+COPY .env /app
 # install required packages for system
 RUN apt-get update \
     && apt-get upgrade -y \
