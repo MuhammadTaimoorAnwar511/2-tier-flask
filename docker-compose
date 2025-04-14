@@ -8,7 +8,7 @@ services:
       MYSQL_HOST: ${MYSQL_HOST}
       MYSQL_USER: ${MYSQL_USER}
       MYSQL_PASSWORD: ${MYSQL_PASSWORD}
-      MYSQL_DB: ${MYSQL_DB}  # Make sure this matches the variable name in .env
+      MYSQL_DB: ${MYSQL_DB}
     depends_on:
       - mysql
   mysql:
