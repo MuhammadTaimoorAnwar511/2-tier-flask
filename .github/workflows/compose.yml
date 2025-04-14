@@ -31,8 +31,8 @@ jobs:
         run: docker rm -f flaskapp
       - name: Create .env file
         run: echo "${{ secrets.ENV_FILE }}" > .env
-      - name: Run docker container
-        run: docker-compose up -d 
+      - name: Start Containers
+        run: docker-compose -f docker-compose.yml up -d
       - name: Remove old images
         run: docker image prune -a -f
       
