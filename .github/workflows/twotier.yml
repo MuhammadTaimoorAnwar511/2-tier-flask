@@ -33,5 +33,5 @@ jobs:
       - name: Run docker container
         run: docker run -d -p 5000:5000 --network=twotier --env-file .env --name=flaskapp taimooranwar/flaskapp:latest 
       - name: Remove old images
-        run: docker image prune -y
+        run: docker image prune
       
