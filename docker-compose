@@ -1,27 +1,27 @@
 version: '3'
 services:
   backend:
-    image: 'taimooranwar/flaskapp:latest'
+    image: taimooranwar/flaskapp:latest
     ports:
-      - '5000:5000'
+      - "5000:5000"
     environment:
-      MYSQL_HOST: mysql
-      MYSQL_USER: admin
-      MYSQL_PASSWORD: admin
-      MYSQL DB: myDb
+      MYSQL_HOST: ${MYSQL_HOST}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+      MYSQL_DB: ${MYSQL_DB}  # Make sure this matches the variable name in .env
     depends_on:
       - mysql
   mysql:
-    image: 'mysql: 5.7'
+    image: mysql:5.7
     environment:
-      MYSQL_DATABASE: myDb
-      MYSQL_USER: admin
-      MYSQL_PASSWORD: admin
-      MYSQL ROOT PASSWORD: admin
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
     ports:
-      - '3306:3306'
+      - "3306:3306"
     volumes:
-      - './message.sql:/docker-entrypoint-initdb.d/message.sql'
-      - 'mysql-data:/var/lib/mysql'
+      - "./message.sql:/docker-entrypoint-initdb.d/message.sql"
+      - "mysql-data:/var/lib/mysql"
 volumes:
   mysql-data:
