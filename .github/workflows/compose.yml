@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - main
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -15,24 +16,28 @@ jobs:
       - name: Build Docker Image
         run: docker build -t taimooranwar/flaskapp .
       - name: Publish image to docker hub
-        run: docker push taimooranwar/flaskapp:latest   
+        run: docker push taimooranwar/flaskapp:latest
 
-  deploy: 
+  deploy:
     needs: build
     runs-on: aws-ec2
     steps:
-      - name: Checkout Source
+      - name: Checkout Source Code
         uses: actions/checkout@v3
-        
+
       - name: Pull image from docker hub
         run: docker pull taimooranwar/flaskapp:latest
 
       - name: Delete Old Container
-        run: docker rm -f flaskapp
+        run: docker rm -f flaskapp || true
+
       - name: Create .env file
-        run: echo "${{ secrets.ENV_FILE }}" > .env
+        run: |
+          echo "${{ secrets.ENV_FILE }}" > .env
+          cat .env  # For verification
+
       - name: Start Containers
         run: docker-compose -f docker-compose.yml up -d
+
       - name: Remove old images
         run: docker image prune -a -f
-      
