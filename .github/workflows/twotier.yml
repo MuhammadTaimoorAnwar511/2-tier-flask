@@ -16,7 +16,7 @@ jobs:
       - name: Build Docker Image
         run: docker build -t taimooranwar/flaskapp .
       - name: Publish image to docker hub
-        run: docker push taimooranwar/flask:latest   
+        run: docker push taimooranwar/flaskapp:latest   
 
   deploy: 
     needs: build
