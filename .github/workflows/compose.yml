@@ -29,7 +29,7 @@ jobs:
         run: docker pull taimooranwar/flaskapp:latest
 
       - name: Delete Old Container
-        run: docker rm -f flaskapp || true
+        run: docker compose down
 
       - name: Create .env file
         run: |
