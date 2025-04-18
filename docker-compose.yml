@@ -3,10 +3,10 @@ services:
   mysql:
     image: 'mysql:5.7'
     environment:
-      MYSQL_DATABASE: myDb
-      MYSQL_USER: admin
-      MYSQL_PASSWORD: admin
-      MYSQL_ROOT_PASSWORD: admin
+      MYSQL_DATABASE: ${MYSQL_DATABASE} 
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
     ports:
       - '3306:3306'
     volumes:
@@ -17,17 +17,19 @@ services:
       interval: 5s
       timeout: 10s
       retries: 5
+
   backend:
     image: 'taimooranwar/flaskapp:latest'
     ports:
       - '5000:5000'
     environment:
-      MYSQL_HOST: mysql
-      MYSQL_USER: admin
-      MYSQL_PASSWORD: admin
-      MYSQL_DB: myDb
+      MYSQL_HOST: ${MYSQL_HOST}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+      MYSQL_DB: ${MYSQL_DB}
     depends_on:
       mysql:
         condition: service_healthy
+
 volumes:
   mysql-data:
