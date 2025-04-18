@@ -37,7 +37,7 @@ jobs:
           cat .env  # For verification
 
       - name: Start Containers
-        run: docker-compose -f docker-compose.yml up -d
+        run: docker-compose up -d
 
       - name: Remove old images
         run: docker image prune -a -f
